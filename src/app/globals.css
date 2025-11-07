@@ -1,8 +1,11 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #05070a;
+  --foreground: #e6faff;
+  --grid: radial-gradient(ellipse at center, rgba(0, 255, 255, 0.08), transparent 60%),
+    linear-gradient(to right, rgba(0, 255, 255, 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0, 255, 255, 0.05) 1px, transparent 1px);
 }
 
 @theme inline {
@@ -10,17 +13,78 @@
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+  --color-cyan-300: #67e8f9;
+  --color-cyan-200: #a5f3fc;
+  --color-cyan-500: #06b6d4;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: #05070a;
+    --foreground: #e6faff;
   }
 }
 
 body {
   background: var(--background);
+  background-image: var(--grid);
+  background-size: auto, 40px 40px, 40px 40px;
+  background-position: center center, center center, center center;
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Nav link style */
+.nav-link {
+  color: #a5f3fc;
+  text-underline-offset: 4px;
+}
+.nav-link:hover {
+  color: #e0fdff;
+}
+
+/* Simple prose defaults without typography plugin */
+.prose-reset h2,
+.prose-reset h3,
+.prose-reset h4 {
+  color: #a5f3fc;
+  font-weight: 600;
+}
+.prose-reset a {
+  color: #67e8f9;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.prose-reset code {
+  background: rgba(3, 105, 161, 0.25);
+  border: 1px solid rgba(6, 182, 212, 0.35);
+  padding: 0.1rem 0.3rem;
+  border-radius: 0.25rem;
+}
+.prose-reset pre {
+  background: rgba(0, 0, 0, 0.6);
+  border: 1px solid rgba(6, 182, 212, 0.25);
+  padding: 1rem;
+  border-radius: 0.5rem;
+  overflow-x: auto;
+}
+
+/* TRON lightcycle animation */
+.lightcycle {
+  position: absolute;
+  left: -20%;
+  top: var(--y, 50%);
+  width: 20%;
+  height: 3px;
+  background: linear-gradient(90deg, rgba(103,232,249,0) 0%, rgba(103,232,249,0.7) 30%, rgba(165,243,252,0.95) 70%, rgba(103,232,249,0) 100%);
+  filter: drop-shadow(0 0 6px rgba(103,232,249,0.9)) drop-shadow(0 0 14px rgba(6,182,212,0.6));
+  animation-name: lightcycle-move;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+@keyframes lightcycle-move {
+  0% { transform: translateX(0); opacity: 0.8; }
+  60% { opacity: 1; }
+  100% { transform: translateX(600%); opacity: 0.85; }
 }
